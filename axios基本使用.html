@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios获取笑话</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="get请求" @click="get()">
+        <input type="button" value="post请求" @click="post()">
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                get() {
+                    axios.get("https://autumnfish.cn/api/joke/list?num=3")
+                        .then(function (response) {
+                            console.log(response.data.jokes)
+                        }, function (err) {
+                            console.error(err)
+                        })
+                },
+                post() {
+                    axios.post("https://autumnfish.cn/api/user/reg", {
+                        username: '张金富'
+                    })
+                        .then(function (response) {
+                            console.log(response.data)
+                        }, function (err) {
+                            console.error(err)
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

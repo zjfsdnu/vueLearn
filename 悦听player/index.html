@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悦听</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="query" @keyup.enter="searchMusic">
+
+        <ul>
+            <li v-for="item in musicList">
+                <a href="javascript:;" @click="playMusic(item.id)">播放</a>
+                {{ item.name }}
+            </li>
+        </ul>
+
+        <div :class="{playing: isPlaying}">
+            <img :src="picUrl" style="width: 500px;height: auto;">
+            <audio :src="musicUrl" @play="play(true)" @pause="play(false)" controls autoplay loop
+                style="width: 100%;"></audio>
+        </div>
+
+        <div>
+            <dl v-for="item in hotComments">
+                <dt><img :src="item.user.avatarUrl" style="width: 50px;height: auto;"></dt>
+                <dd>{{ item.user.nickname }}</dd>
+                <dd>{{ item.content }}</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

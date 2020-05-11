@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和风天气</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="city" @keyup.enter="searchWeather">
+        <input type="button" value="搜索" @click="searchWeather">
+        <div>
+            <a href="javascript:;" @click="changeCity('yantai')">烟台</a>
+            <a href="javascript:;" @click="changeCity('dingxi')">定西</a>
+            <a href="javascript:;" @click="changeCity('lintao')">临洮</a>
+            <a href="javascript:;" @click="changeCity('laixi')">莱西</a>
+            <a href="javascript:;" @click="changeCity('鄂尔多斯')">鄂尔多斯</a>
+            <a href="javascript:;" @click="changeCity('济南')">济南</a>
+            <a href="javascript:;" @click="changeCity('lanzhou')">莱州</a>
+        </div>
+        <ul>
+            <li v-for="weather in weatherList">
+                {{ weather }}
+            </li>
+        </ul>
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

@@ -15,6 +15,7 @@
             <li v-for="item in musicList">
                 <a href="javascript:;" @click="playMusic(item.id)">播放</a>
                 {{ item.name }}
+                <a href="javascript:;" v-if="item.mvid!=0" @click="playMV(item.mvid)">MV</a>
             </li>
         </ul>
 
@@ -24,10 +25,14 @@
                 style="width: 100%;"></audio>
         </div>
 
+        <div v-show="isShow">
+            <video :src="mvUrl" controls></video>
+        </div>
+
         <div>
             <dl v-for="item in hotComments">
                 <dt><img :src="item.user.avatarUrl" style="width: 50px;height: auto;"></dt>
-                <dd>{{ item.user.nickname }}</dd>
+                <dd><b>{{ item.user.nickname }}</b></dd>
                 <dd>{{ item.content }}</dd>
             </dl>
         </div>

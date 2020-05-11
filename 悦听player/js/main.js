@@ -6,7 +6,9 @@ var app = new Vue({
         musicUrl: "",
         picUrl: "",
         hotComments: [],
-        isPlaying: false
+        isPlaying: false,
+        isShow: false,
+        mvUrl: ""
     },
     methods: {
         searchMusic() {
@@ -25,6 +27,7 @@ var app = new Vue({
                 .then(function (response) {
                     // console.log(response.data)
                     that.musicUrl = response.data.data[0].url;
+                    that.hide();
                 }, function (err) {
                     console.log(err)
                 })
@@ -45,6 +48,21 @@ var app = new Vue({
         },
         play(flag) {
             this.isPlaying = flag
+        },
+        playMV(mvid) {
+            var that = this;
+            axios.get("https://autumnfish.cn/mv/url?id=" + mvid)
+                .then(function (response) {
+                    // console.log(response.data)
+                    that.isShow = true
+                    that.mvUrl = response.data.data.url;
+                }, function (err) {
+                    console.log(err)
+                })
+        },
+        hide() {
+            this.isShow = false;
+            this.mvUrl = "";
         }
     }
 })
